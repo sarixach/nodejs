@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Contacts</title>
+    <style>
+        #content_id {
+            border: 1px solid #cccccc;
+            width: 350px;
+            min-height: 200px;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center;">All contacts</h1>
+<div id="content_id">
+</div>
+</body>
+<script>
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.status == 200 && xhr.readyState == 4) {
+            var data = xhr.responseText;
+
+            var obj = data.split('|');
+
+            var bool = true;
+            //alert(JSON.parse(obj[0]).sex);
+            for (var o in obj) {
+                if (obj[o] !== "") {
+                    var content = JSON.parse(obj[o]);
+
+                    for (var k in content) {
+                        if (content[k].length >= 1) {
+                            bool = true;
+                        } else {
+                            bool = false;
+                        }
+                    }
+
+                    var template = '';
+
+                    if (bool) {
+                        for (var j in content) {
+                            template += "<p>" + j + ": " + content[j] + "</p>";
+                        }
+
+                        template += "<hr>";
+                        content_id.innerHTML += template;
+                    }
+                }
+            }
+        }
+    };
+    xhr.open('GET', '/contacts/get', true);
+    xhr.send(null);
+</script>
+</html>
