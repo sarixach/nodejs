@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Contacts</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <script type="text/javascript" src='./js/jquery-1.11.1.js'></script>
+</head>
+<body>
+<h1 style="text-align: center;">All contacts</h1>
+<div id="content_id">
+</div>
+</body>
+<script>
+
+$.ajax({
+    url: 'contacts/get',
+    type: 'GET',
+    dataType: 'html',
+    success: function(data) {
+
+        var obj = data.split('|');
+
+        var bool = true;
+        //alert(JSON.parse(obj[0]).sex);
+        for (var o in obj) {
+            if (obj[o] !== "") {
+                var content = JSON.parse(obj[o]);
+
+                for (var k in content) {
+                    if (content[k].length >= 1) {
+                        bool = true;
+                    } else {
+                        bool = false;
+                    }
+                }
+
+                var template = '';
+
+                if (bool) {
+                    for (var j in content) {
+                        template += "<p>" + j + ": " + content[j] + "</p>";
+                    }
+
+                    template += "<hr>";
+                    content_id.innerHTML += template;
+                }
+            }
+        }
+    }
+});
+
+</script>
+</html>
