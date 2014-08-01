@@ -22,3 +22,39 @@ input {
     min-height: 200px;
     padding: 30px;
 }
+
+.add {
+	display: block;
+	width: 80px;
+	height: 80px;
+	background: url(../img/add.png) no-repeat;
+	float: left;
+	margin: 5px 30px;
+}
+
+.add a {
+	display: block;
+	width: 80px;
+	height: 80px;
+	cursor: pointer;
+}
+
+.list {
+	display: block;
+	width: 74px;
+	height: 80px;
+	background: url(../img/list.png) no-repeat;
+	margin: 5px 0;
+	float: left;
+}
+
+.list a {
+	display: block;
+	width: 74px;
+	height: 80px;
+	cursor: pointer;
+}
+
+.clear {
+	clear: both;
+}

@@ -1,9 +1,12 @@
 var express = require('express'),
 	path = require('path'),
 	fs = require('fs'),
+	ejs = require('ejs'),
 	app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.get('/', function(req, res, next) {
 	res.redirect('/index.html');
@@ -17,9 +20,13 @@ app.get('/contacts/new', function(req, res, next) {
 	res.redirect('/new_contact.html');
 });
 
-app.get('/contacts/email/:email', function(req, res, next) {
-	var email = req.params.email;
+app.get('/contacts/getEmail', function(req, res, next) {
+	readJsonFile(res);
+});
 
+app.get('/:email', function(req, res, next) {
+	var email = req.params.email;
+	res.render('email', {email: email});
 });
 
 app.post('/contacts/add', function(req, res, next) {
