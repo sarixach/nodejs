@@ -7,35 +7,11 @@
 </head>
 <body>
 <div id="content_id">
+    <p>FirstName: <%= data.firstName %></p>
+    <p>LastName: <%= data.lastName %></p>
+    <p>age: <%= data.age %></p>
+    <p>email: <%= data.email %></p>
+    <p>Sex: <%= data.sex %></p>
 </div>
-	<input type='hidden' value='<%= email %>'>
 </body>
-<script>
-
-var data_val = $('input[type=hidden]').val();
-
-var template = '';
-$.ajax({
-    url: 'contacts/getEmail',
-    type: 'GET',
-    dataType: 'html',
-    success: function(data) {
-    	var obj = data.split('|');
-    	for (var o in obj) {
-        	var content = JSON.parse(obj[o]);
-        	if (content.email == data_val) {
-        		var user_info = content;
-        		for (var j in content) {
-                    template += "<p>" + j + ": " + content[j] + "</p>";
-                }
-
-                template += "<hr>";
-                content_id.innerHTML += template;
-        		break;
-        	}
-        }
-    }
-});
-
-</script>
 </html>

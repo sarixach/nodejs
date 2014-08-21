@@ -14,39 +14,44 @@
 <script>
 
 $.ajax({
-    url: 'contacts/get',
+    url: '/contacts/get',
     type: 'GET',
     dataType: 'html',
     success: function(data) {
-
-        var obj = data.split('|');
-
-        var bool = true;
-        //alert(JSON.parse(obj[0]).sex);
-        for (var o in obj) {
-            if (obj[o] !== "") {
-                var content = JSON.parse(obj[o]);
-
-                for (var k in content) {
-                    if (content[k].length >= 1) {
-                        bool = true;
-                    } else {
-                        bool = false;
-                    }
-                }
-
-                var template = '';
-
-                if (bool) {
-                    for (var j in content) {
-                        template += "<p>" + j + ": " + content[j] + "</p>";
-                    }
-
-                    template += "<hr>";
-                    content_id.innerHTML += template;
-                }
-            }
+        var store = JSON.parse(data);
+        if (store == "") {
+            location.href='/';
         }
+        content_id.innerHTML = "";
+
+        var template = '';
+
+        for (var i = 0, length = store.length; i < length; i++) {
+            for (var item in store[i]) {
+                template += "<p>" + item + ": " + store[i][item] + "</p>";
+            }
+
+            template += "<div class='delete_style'><div data_email='"+ store[i]['email'] +"' class='delete'></div></div>";
+        }
+        content_id.innerHTML += template;
+
+
+        $(".delete").on("click", function(e) {
+            var email = e.target.getAttribute("data_email");
+            $.ajax({
+                url: '/contacts/remove',
+                type: "POST",
+                data: JSON.stringify({email: email}),
+                dataType: "html",
+                success: function(data) {
+                    if (data == "removed") {
+                        location.href='/contacts.html';
+                    } else if (data == "no") {
+                        alert("Seletecd item not removed");
+                    }
+                }
+            });
+        });
     }
 });
 
