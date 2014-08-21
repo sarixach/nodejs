@@ -1,8 +1,0 @@
-{"firstName":"Khachatur","lastName":"Saribekyan","age":"21","email":"sarixach@gmail.com","sex":"male"}
-|{"firstName":"Karlen","lastName":"Kishmiryan","age":"23","email":"karlen.kishmiryan@sourcio2.com","sex":"female"}
-|{"firstName":"Tatev","lastName":"Abgaryan","age":"19","email":"tatev@abgaryan.net","sex":"female"}
-|{"firstName":"Sona","lastName":"Simonyan","age":"19","email":"simsonarm@mail.ru","sex":"female"}
-|{"firstName":"Lusine","lastName":"Petrosyan","age":"19","email":"lusinepetrosyan629@gmail.com","sex":"female"}
-|{"firstName":"Tatevik","lastName":"Orbelyan","age":"23","email":"torbelyan@mail.ru,","sex":"female"}
-|{"firstName":"Tatevik","lastName":"Simonyan","age":"22","email":"Tatev-si@mail.ru,","sex":"female"}
-|
